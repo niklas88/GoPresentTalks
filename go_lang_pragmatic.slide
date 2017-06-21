@@ -1,0 +1,22 @@
+
+The Go Programming Language
+Pragmatic Programming
+21 Jun 2017
+Tags: go, pragmatic, programming, language
+
+Niklas Schnelle
+University of Freiburg
+schnelle@informatik.uni-freiburg.de
+@spacenick88
+
+* Introduction
+
+A not so classic "Hello, World"
+
+.play -edit hello.go /func main/,
+
+* Resolution
+
+So how exactly does this fit together with our previous "Hello, World" example?
+
+.play -edit hello.go /func worldTicker/,/^}/
