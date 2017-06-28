@@ -3,31 +3,40 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"time"
 )
 
-func worldTicker() <-chan string {
-	ticker := time.Tick(200 * time.Millisecond)
-	worlds := make(chan string)
-	go func() {
-		worldsFile, _ := os.Open("world.txt")
-		defer worldsFile.Close()
-		scanner := bufio.NewScanner(worldsFile)
-		for _ = range ticker {
-			if !scanner.Scan() {
-				close(worlds)
-				return
-			}
-			worlds <- scanner.Text()
-		}
-	}()
-	return worlds
+// START OMIT
+type LineTicker struct {
+	C <-chan string
 }
 
+func NewLineTicker(reader io.ReadCloser) *LineTicker {
+	lineChan := make(chan string) // HLchan
+	l := &LineTicker{C: lineChan} // HLescape
+	go func() {                   // HLgo
+		defer reader.Close() // HLdefer
+		ticker := time.Tick(200 * time.Millisecond)
+		scanner := bufio.NewScanner(reader)
+		for _ = range ticker {
+			if !scanner.Scan() {
+				close(lineChan) // HLchan
+				return
+			}
+			lineChan <- scanner.Text() // HLchan
+		}
+	}() // HLgo
+	return l
+}
+
+// END OMIT
+
 func main() {
-	worlds := worldTicker()
-	for world := range worlds {
+	worldsFile, _ := os.Open("world.txt")
+	worldTicker := NewLineTicker(worldsFile)
+	for world := range worldTicker.C {
 		fmt.Println("Hello, " + world)
 	}
 }

@@ -1,0 +1,14 @@
+$GOPATH/
+    bin/
+        hello                          # command executable
+    pkg/
+        linux_amd64/
+            github.com/golang/example/
+                stringutil.a           # package object
+    src/
+        github.com/golang/example/
+            hello/
+                hello.go               # command source
+            stringutil/
+                reverse.go             # package source
+                reverse_test.go        # test source
