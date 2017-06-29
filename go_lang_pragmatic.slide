@@ -14,7 +14,7 @@ schnelle@informatik.uni-freiburg.de
 Go is a compiled, statically typed and garbage collected programming
 language designed primarily for backend development
 
-And this is what it looks like at a glance
+And this is what it looks like at a glance (we will look at the full code later)
 .play -edit hello.go /func main/,
 
 * Environment
@@ -25,9 +25,9 @@ As a language originally designed at Google Go targets a special environment
 - Diverse developer backgrounds from novice to the inventors of C
 - Distributed systems and concurrency everywhere
 - Systems are heterogeneous yet stability is paramount
-- Almost all software runs on a full OS
+- Software runs on a full OS
 
-* Language Design Approach
+* Language Design
 
 So how does Go help with *large* *projects*?
 
@@ -36,7 +36,7 @@ So how does Go help with *large* *projects*?
 - Projects and workspaces use a standard layout
 .code workspace.txt
 
-* Language Design Approach
+* Language Design
 
 And *diverse* *developer* *backgrounds*?
 
@@ -47,13 +47,14 @@ And *diverse* *developer* *backgrounds*?
 - Enforced best practices: Explicit type conversion, no unused variables
 .play -edit enforced.go /START OMIT/,/END OMIT/
 
-* Language Design Approach
+* Language Design
 
-What about distributed systems?
+What about *concurrency*?
 
-- Support for concurrency via _Goroutines_ - like threads but cheaper
+- First class support for concurrency: _Goroutines_, strictly typed channels
+- _Goroutines_ are light-weight threads with full CPU parallelism
 - Synchronous IO in _Goroutines_ becomes asynchronous at the OS level
-.play -edit concurrency.go
+.play -edit concurrency.go /START OMIT/,/END OMIT/
 
 * Resolution
 

@@ -20,7 +20,7 @@ func NewLineTicker(reader io.ReadCloser) *LineTicker {
 		defer reader.Close() // HLdefer
 		ticker := time.Tick(200 * time.Millisecond)
 		scanner := bufio.NewScanner(reader)
-		for _ = range ticker {
+		for range ticker {
 			if !scanner.Scan() {
 				close(lineChan) // HLchan
 				return
