@@ -1,7 +1,7 @@
 
 The Go Programming Language
 Pragmatic Programming
-21 Jun 2017
+1 Aug 2017
 Tags: go, pragmatic, programming, language
 
 Niklas Schnelle
@@ -19,7 +19,7 @@ And this is what it looks like at a glance (we will look at the full code later)
 
 * Environment
 
-As a language originally designed at Google Go targets a special environment
+As a language originally designed at Google, Go targets a special environment
 
 - Large and long-lived projects
 - Diverse developer backgrounds from novice to the inventors of C
@@ -41,7 +41,7 @@ So how does Go help with *large* *projects*?
 And *diverse* *developer* *backgrounds*?
 
 - Approachable documentation [[https://tour.golang.org]]
-- Simple but strict type system, no classes just interfaces
+- Simple but strict type system, no classes just interfaces and some gernic types
 - Batteries included: _Networking_, _JSON_, _HTTP(S)_, _JPEG_, _cryptography_, _parsing_ _Go_
 - Garbage collection but with non-escaping variables on the stack and *defer* for executing functions on scope exit
 - Enforced best practices: Explicit type conversion, no unused variables
@@ -55,6 +55,18 @@ What about *concurrency*?
 - _Goroutines_ are light-weight threads with full CPU parallelism
 - Synchronous IO in _Goroutines_ becomes asynchronous at the OS level
 .play -edit concurrency.go /START OMIT/,/END OMIT/
+
+* Language Design
+
+What about *distributed* and *heterogeneous* systems?
+
+- Out of the box: _networking_, _HTTP_, _databases_, _remote_ _profiling_ etc.
+- Simple blocking IO leads to very readable networking code
+- Native cross compilation 
+.code cross.txt
+- Default static compilation creates independence from system libraries
+- _Goroutines_ allow for effective scaling
+- Operating System functionality like filesystems, clocks, threads and locks are assumed available
 
 * Resolution
 
@@ -84,3 +96,9 @@ So what's behind the "Hello, World" example?
 So what's behind the "Hello, World" example?
 
 .play -edit hello.go /START OMIT/,/END OMIT/ HLchan
+
+* References
+
+- [[https://golang.org/doc/effective_go.html]]
+- [[https://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5]]
+- [[https://morsmachine.dk/netpoller]]
