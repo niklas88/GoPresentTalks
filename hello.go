@@ -10,7 +10,7 @@ import (
 
 // START OMIT
 type LineTicker struct {
-	C <-chan string
+	C <-chan string // HLstruct
 }
 
 func NewLineTicker(reader io.ReadCloser) *LineTicker {

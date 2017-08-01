@@ -11,28 +11,29 @@ schnelle@informatik.uni-freiburg.de
 
 * Introduction
 
-Go is a compiled, statically typed and garbage collected programming
-language designed primarily for backend development
+Go is a compiled, statically typed and garbage collected systems programming
+language designed primarily for backend services. It was originally created
+in 2009 by Rob Pike and Ken Thompson at Google.
 
 And this is what it looks like at a glance (we will look at the full code later)
 .play -edit hello.go /func main/,
 
 * Environment
 
-As a language originally designed at Google, Go targets a special environment
+As a language designed at Google, Go targets a specific environment
 
-- Large and long-lived projects
-- Diverse developer backgrounds from novice to the inventors of C
-- Distributed systems and concurrency everywhere
-- Systems are heterogeneous yet stability is paramount
-- Software runs on a full OS
+- Large projects with relatively high developer fluctuation
+- Diverse developer backgrounds from novice to the inventors of Unix
+- Distributed and concurrent systems
+- Heterogeneous hardware and software platforms yet stability is paramount
+- Most software runs on a full OS not on microcontrollers
 
 * Language Design
 
 So how does Go help with *large* *projects*?
 
-- Go comes with extensive tooling for _building_, _testing_, _documenting_, _profiling_…
-- Projects may use internal versions of libraries (called _vendoring_)
+- Go comes with extensive tooling for _build_, _test_, _documentation_, _profiling_…
+- Support for internal versioning of libraries (called _vendoring_)
 - Projects and workspaces use a standard layout
 .code workspace.txt
 
@@ -45,6 +46,7 @@ And *diverse* *developer* *backgrounds*?
 - Batteries included: _Networking_, _JSON_, _HTTP(S)_, _JPEG_, _cryptography_, _parsing_ _Go_
 - Garbage collection but with non-escaping variables on the stack and *defer* for executing functions on scope exit
 - Enforced best practices: Explicit type conversion, no unused variables
+- Automatic standard formatting used almost exclusively
 .play -edit enforced.go /START OMIT/,/END OMIT/
 
 * Language Design
@@ -54,7 +56,7 @@ What about *concurrency*?
 - First class support for concurrency: _Goroutines_, strictly typed channels
 - _Goroutines_ are light-weight threads with full CPU parallelism
 - Synchronous IO in _Goroutines_ becomes asynchronous at the OS level
-.play -edit concurrency.go /START OMIT/,/END OMIT/
+.play -edit concurrency.go /START OMIT/,/END OMIT/ HLconc
 
 * Language Design
 
@@ -71,7 +73,7 @@ What about *distributed* and *heterogeneous* systems?
 * Resolution
 
 So what's behind the "Hello, World" example?
-.play -edit hello.go /START OMIT/,/END OMIT/
+.play -edit hello.go /START OMIT/,/END OMIT/ HLstruct
 
 * Resolution
 

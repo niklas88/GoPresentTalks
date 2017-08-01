@@ -10,15 +10,15 @@ func sumPartial(seq []float64, res chan float64) {
 	for _, v := range seq {
 		sum += v
 	}
-	res <- sum
+	res <- sum // HLconc
 }
 
 func sum(seq []float64) float64 {
-	resultChan := make(chan float64)
+	resultChan := make(chan float64) // HLconc
 	defer close(resultChan)
-	go sumPartial(seq[:len(seq)/2], resultChan)
-	go sumPartial(seq[len(seq)/2:], resultChan)
-	return <-resultChan + <-resultChan
+	go sumPartial(seq[:len(seq)/2], resultChan) // HLconc
+	go sumPartial(seq[len(seq)/2:], resultChan) // HLconc
+	return <-resultChan + <-resultChan // HLconc
 }
 
 // END OMIT
