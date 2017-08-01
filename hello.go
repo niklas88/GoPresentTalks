@@ -10,33 +10,42 @@ import (
 
 // START OMIT
 type LineTicker struct {
-	C <-chan string // HLstruct
+	C chan string // HLstruct
+	reader io.ReadCloser // HLstruct
 }
 
-func NewLineTicker(reader io.ReadCloser) *LineTicker {
-	lineChan := make(chan string) // HLchan
-	l := &LineTicker{C: lineChan} // HLescape
+func (l *LineTicker) Start() {
+	l.C = make(chan string) // HLchan
 	go func() {                   // HLgo
-		defer reader.Close() // HLdefer
+		defer close(l.C) // HLdefer
 		ticker := time.Tick(200 * time.Millisecond)
-		scanner := bufio.NewScanner(reader)
+		scanner := bufio.NewScanner(l.reader)
 		for range ticker {
 			if !scanner.Scan() {
-				close(lineChan) // HLchan
 				return
 			}
-			lineChan <- scanner.Text() // HLchan
+			l.C <- scanner.Text() // HLchan
 		}
 	}() // HLgo
+}
+// END OMIT
+
+// START NOTICKER OMIT
+func NewLineTicker(input io.ReadCloser) *LineTicker {
+	l := &LineTicker{reader: input} // HLescape
 	return l
 }
 
-// END OMIT
-
 func main() {
-	worldsFile, _ := os.Open("world.txt")
+	worldsFile, err := os.Open("world.txt")
+	if err != nil {
+		return
+	}
+	defer worldsFile.Close() // HLdefer
 	worldTicker := NewLineTicker(worldsFile)
+	worldTicker.Start()
 	for world := range worldTicker.C {
 		fmt.Println("Hello, " + world)
 	}
 }
+// END NOTICKER OMIT

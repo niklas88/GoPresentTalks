@@ -16,7 +16,7 @@ language designed primarily for backend services. It was originally created
 in 2009 by Rob Pike and Ken Thompson at Google.
 
 And this is what it looks like at a glance (we will look at the full code later)
-.play -edit hello.go /func main/,
+.play -edit hello.go /func main/,/END NOTICKER/
 
 * Environment
 
@@ -73,29 +73,35 @@ What about *distributed* and *heterogeneous* systems?
 * Resolution
 
 So what's behind the "Hello, World" example?
+
+.play -edit hello.go /func main/,/END NOTICKER/ HLescape
+
+* Resolution
+
+Let's look at `NewLineTicker`
+
+.play -edit hello.go /START NOTICKER/,/END NOTICKER/ HLescape
+
+* Resolution
+
+What's behind the `LineTicker` `struct`?
 .play -edit hello.go /START OMIT/,/END OMIT/ HLstruct
 
 * Resolution
 
-So what's behind the "Hello, World" example?
-
-.play -edit hello.go /START OMIT/,/END OMIT/ HLescape
-
-* Resolution
-
-So what's behind the "Hello, World" example?
+Whatever happens close your open files and channels!
 
 .play -edit hello.go /START OMIT/,/END OMIT/ HLdefer
 
 * Resolution
 
-So what's behind the "Hello, World" example?
+Now how about those _Goroutines_? Also _First_ _Class_ _Functions_
 
 .play -edit hello.go /START OMIT/,/END OMIT/ HLgo
 
 * Resolution
 
-So what's behind the "Hello, World" example?
+And some light channel use
 
 .play -edit hello.go /START OMIT/,/END OMIT/ HLchan
 
